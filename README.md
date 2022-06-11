@@ -17,6 +17,10 @@ https://zhuanlan.zhihu.com/p/53250337
 
 https://blog.csdn.net/qq_53280175/article/details/121107748
 
+安装完环境后，有一步要做的就是：
+
+pip install requests
+
 ## liangongbao
 练功宝题库每日更新
 
