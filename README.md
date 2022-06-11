@@ -11,7 +11,7 @@
 
 「lv_0_20220611232504.mp4」https://www.aliyundrive.com/s/KueJWyyzKfd
 
-上面视频实在看不懂，看下面:
+上面视频实在看不懂，看下面这个链接:
 
 https://zhuanlan.zhihu.com/p/53250337
 
