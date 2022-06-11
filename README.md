@@ -5,4 +5,4 @@
 
 ## 赞赏
 
-赞不赞赏无所谓.![DONATE](./donate.jpg)
+觉得不错的话,请我喝杯咖啡吧.![DONATE](./donate.jpg)
