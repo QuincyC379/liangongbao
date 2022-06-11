@@ -11,6 +11,10 @@
 
 「lv_0_20220611232504.mp4」https://www.aliyundrive.com/s/KueJWyyzKfd
 
+上面视频实在看不懂，看下面:
+
+https://zhuanlan.zhihu.com/p/53250337
+
 ## liangongbao
 练功宝题库每日更新
 
