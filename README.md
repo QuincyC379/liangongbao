@@ -1,3 +1,12 @@
+## 环境搭建
+
+1. 搭建环境所需软件：
+「pycharm-community-2022.1.1.exe」https://www.aliyundrive.com/s/6rok2fN6aNA
+「python-3.7.9-amd64.exe」https://www.aliyundrive.com/s/Z3gVLHaLSWL
+
+2. 视频教程：
+「lv_0_20220611232504.mp4」https://www.aliyundrive.com/s/KueJWyyzKfd
+
 ## liangongbao
 练功宝题库每日更新
 
