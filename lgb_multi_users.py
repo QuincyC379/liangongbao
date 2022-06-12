@@ -173,7 +173,7 @@ def lgb_process():
                 # points_dict = json.loads(points.text)
                 # total_points = points_dict.get("data").get("points")
                 # print("您当前的总积分为%s" % total_points)
-                print("======程序执行结束======")
+                print("======本用户处理结束，下个用户中处理中======")
                 break
             rightAnswer = right_answer(result_dict)
             if rightAnswer:
