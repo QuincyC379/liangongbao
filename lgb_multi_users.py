@@ -5,7 +5,7 @@ import requests
 import json
 
 # 题库
-tk_file_name = "tk_v2.txt"
+tk_file_name = "answers.txt"
 token_url = "https://js.lgb360.com/lgb/user/loginByPassword.do"
 token_header = {
     "token": "",
