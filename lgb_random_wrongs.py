@@ -139,7 +139,6 @@ header = {
 }
 
 for x in range(random.randint(11,16)):
-    
     data = result_dict.get("data")
     if data:
         ques = data.get("ques")
