@@ -21,7 +21,7 @@ token_header = {
 }
 
 # 写入自己的账号密码
-token_data = {"userName": "xxxxxx", "password": "xxxxxx"}  # t5
+token_data = {"userName": "xxxxxxxxxxx", "password": "1qaz2wsx!"}#t1
 
 token_result = requests.post(token_url, headers=token_header, data=token_data)
 token_dict = json.loads(token_result.text)
@@ -111,7 +111,7 @@ def replace_file_answer(r_options, flags=0):
     with open(filepath, "r+", encoding="utf-8") as f1:
         contents = f1.read()
         pattern = re.compile(re.escape(text), flags)
-        contents = pattern.sub("%s" % r_options, contents)
+        contents = pattern.sub("%s" % json.dumps(r_options, ensure_ascii=False), contents)
         f1.seek(0)
         f1.truncate()
         f1.write(contents)
@@ -127,7 +127,6 @@ def right_answer(json_dict):
         with open(tk_file_name, "a+", encoding="utf-8") as f_:
             f_.seek(0)
             for lines_ in f_.readlines():
-                print(lines_)
                 if content_ in lines_:
                     ques_answer_ = lines_.strip("\n").split("######")
                     a = ques_answer_[1]
@@ -196,7 +195,6 @@ while 1:
         data = {"quesId": "%s" % quesId, "answerOptions": ["%s" % answerOptions[0]]}
         print("<--randomAnswer-->", answerOptions[0])
     answer = requests.post(answerQues, headers=header, data=json.dumps(data))
-
     print(answer.text)
     with open(debugger_file_name, "a", encoding="utf-8") as f:
         f.write(answer.text + "\n")
@@ -209,4 +207,4 @@ while 1:
                 f.write(cont + "######%s" % '["FORTEST"]' + "\n")
             rightOptions = d_.get("rightOptions")
             replace_file_answer(rightOptions)
-    time.sleep(random.randint(5, 9))
+    time.sleep(random.randint(3, 6))
