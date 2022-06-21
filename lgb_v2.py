@@ -111,14 +111,16 @@ def replace_file_answer(r_options, flags=0):
     with open(filepath, "r+", encoding="utf-8") as f1:
         contents = f1.read()
         pattern = re.compile(re.escape(text), flags)
-        contents = pattern.sub("%s"%r_options, contents)
+        contents = pattern.sub("%s" % r_options, contents)
         f1.seek(0)
         f1.truncate()
         f1.write(contents)
 
 
-def right_answer(json_dict, correct_answer):
+# def right_answer(json_dict, correct_answer):
+def right_answer(json_dict):
     answer_ = ""
+    content_ = ""
     if "data" in json_dict.keys():
         ques_ = json_dict.get("data").get("ques")
         content_ = ques_.get("content")
@@ -130,9 +132,9 @@ def right_answer(json_dict, correct_answer):
                     ques_answer_ = lines_.strip("\n").split("######")
                     a = ques_answer_[1]
                     answer_ = json.loads(a)
-            if not answer_:
-                f_.write(content_ + "######%s" % correct_answer + "\n")
-    return answer_
+            # if not answer_:
+            #     f_.write(content_ + "######%s" % correct_answer + "\n")
+    return answer_, content_
 
 
 answerQues = "https://aqy-app.lgb360.com/aqy/ques/answerQues"
@@ -186,7 +188,7 @@ while 1:
         # print("您当前的总积分为%s" % total_points)
         print("======程序执行结束======")
         break
-    rightAnswer = right_answer(result_dict, '["FORTEST"]')
+    rightAnswer, cont = right_answer(result_dict)
     if rightAnswer:
         data = {"quesId": "%s" % quesId, "answerOptions": rightAnswer}
         print("rightAnswer", data)
@@ -194,9 +196,7 @@ while 1:
         data = {"quesId": "%s" % quesId, "answerOptions": ["%s" % answerOptions[0]]}
         print("<--randomAnswer-->", answerOptions[0])
     answer = requests.post(answerQues, headers=header, data=json.dumps(data))
-    """
-    {"result":{"msg":"成功"},"data":{"isRight":true,"answeredOptions":["对"],"ques":{"quesNo":2,"options":["保证工业生产的发展","保障生产经营单位财产安全","保障人民群众生命和财产安全"],"quesTypeStr":"单选题","quesId":"LChwai5EhnoUKCwA","content":"为了加强安全生产工作，防止和减少生产安全事故，（  ），促进经济社会持续健康发展，制定《安全生产法》。","quesType":1},"rightOptions":["对"]}}
-    """
+
     print(answer.text)
     with open(debugger_file_name, "a", encoding="utf-8") as f:
         f.write(answer.text + "\n")
@@ -205,6 +205,8 @@ while 1:
         d_ = result_dict.get("data")
         isRight = d_.get("isRight")
         if not isRight:
+            with open(tk_file_name, "a", encoding="utf-8") as f:
+                f.write(cont + "######%s" % '["FORTEST"]' + "\n")
             rightOptions = d_.get("rightOptions")
             replace_file_answer(rightOptions)
     time.sleep(random.randint(5, 9))
