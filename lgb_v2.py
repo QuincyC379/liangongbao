@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import random
 import time
 import sys
@@ -12,8 +13,8 @@ token_header = {
     "token": "",
     "memberId": "",
     "mobileTerminal": "0",
-    "appversion": "3.0.3",
-    "User-Agent": "LGB/3.0.3 (HMA-AL00; Android 10; zh_CN_#Hans; e4802ed3-c836-4ba8-822c-51dc9cdac4f8; 3626613241)",
+    "appversion": "3.0.6",
+    "User-Agent": "LGB/3.0.6 (HMA-AL00; Android 10; zh_CN_#Hans; e4802ed3-c836-4ba8-822c-51dc9cdac4f8; 3626613241)",
     "Content-Type": "application/x-www-form-urlencoded",
     "Host": "js.lgb360.com",
     "Connection": "Keep-Alive",
@@ -21,7 +22,9 @@ token_header = {
 }
 
 # 写入自己的账号密码
-token_data = {"userName": "xxxxxxxxxxx", "password": "1qaz2wsx!"}#t1
+# token_data = {"userName": "18888888888", "password": "asdfghjk"}# a1
+token_data = {"userName": "17777777777", "password": "asdfghjk"}# a2
+
 
 token_result = requests.post(token_url, headers=token_header, data=token_data)
 token_dict = json.loads(token_result.text)
@@ -136,6 +139,51 @@ def right_answer(json_dict):
     return answer_, content_
 
 
+# update score
+def update_score():
+    update_url = "https://aqy-app.lgb360.com/aqy/ques/submitCompetition"
+    update_header = {
+        "Host": "aqy-app.lgb360.com",
+        "accept": "application/json, text/plain, */*",
+        "token": "%s" % token,
+        "user-agent": "%s" % ua_,
+        "memberid": "%s" % memberId,
+        "content-type": "application/json;charset=UTF-8",
+        "origin": "https://aqy-app.lgb360.com",
+        "x-requested-with": "com.hxak.liangongbao",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7"
+    }
+    update_result = requests.post(update_url, headers=update_header, data="")
+    print(update_result.text)
+
+
+def total_score():
+    points_url = "https://aqy-app.lgb360.com/aqy/regist/competition"
+    points_header = {
+        "Host": "aqy-app.lgb360.com",
+        "accept": "application/json, text/plain, */*",
+        "token": "%s" % token,
+        "user-agent": "%s" % ua_,
+        "memberid": "%s" % memberId,
+        "content-type": "application/json;charset=UTF-8",
+        "origin": "https://aqy-app.lgb360.com",
+        "x-requested-with": "com.hxak.liangongbao",
+        "sec-fetch-site": "same-origin",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-dest": "empty",
+        "accept-encoding": "gzip, deflate",
+        "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7"
+    }
+    points = requests.get(points_url, headers=points_header)
+    points_dict = json.loads(points.text)
+    total_points = points_dict.get("data").get("points")
+    print("您当前的总积分为%s" % total_points)
+
+
 answerQues = "https://aqy-app.lgb360.com/aqy/ques/answerQues"
 header = {
     "Host": "aqy-app.lgb360.com",
@@ -160,32 +208,16 @@ while 1:
         ques = data.get("ques")
         if not ques:
             print("<------恭喜您，满分！！！------>")
+            update_score()
+            total_score()
             break
         else:
             quesId = ques.get("quesId")
             answerOptions = ques.get("options")
     else:
-        points_url = "https://aqy-app.lgb360.com/aqy/regist/competition"
-        points_header = {
-            "Host": "aqy-app.lgb360.com",
-            "accept": "application/json, text/plain, */*",
-            "token": "%s" % token,
-            "user-agent": "%s" % ua_,
-            "memberid": "%s" % memberId,
-            "content-type": "application/json;charset=UTF-8",
-            "origin": "https://aqy-app.lgb360.com",
-            "x-requested-with": "com.hxak.liangongbao",
-            "sec-fetch-site": "same-origin",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-dest": "empty",
-            "accept-encoding": "gzip, deflate",
-            "accept-language": "zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7"
-        }
-        # points = requests.get(points_url, headers=points_header)
-        # points_dict = json.loads(points.text)
-        # total_points = points_dict.get("data").get("points")
-        # print("您当前的总积分为%s" % total_points)
         print("======程序执行结束======")
+        update_score()
+        total_score()
         break
     rightAnswer, cont = right_answer(result_dict)
     if rightAnswer:
@@ -207,4 +239,5 @@ while 1:
                 f.write(cont + "######%s" % '["FORTEST"]' + "\n")
             rightOptions = d_.get("rightOptions")
             replace_file_answer(rightOptions)
-    time.sleep(random.randint(3, 6))
+    time.sleep(random.randint(2, 4))
+    # total_score()
