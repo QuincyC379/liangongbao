@@ -1,3 +1,4 @@
+# 有问题可以加Q群：244647066
 # 2023年自动化程序链接地址，目前都是满分：
 
 链接：https://pan.baidu.com/s/1UqEOSZ4DgqQ-7ttcM8vaOg?pwd=7o38 
@@ -32,7 +33,7 @@ pip install requests
 ## liangongbao
 练功宝题库每日更新
 
-有任何问题，可加Q群交流:573902536
+有任何问题，可加Q群交流:244647066
 
 ## 赞赏
 
