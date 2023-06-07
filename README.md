@@ -2,8 +2,8 @@
 # 2023年自动化程序链接地址，目前都是满分：
 可以自己更新题库版本，明文题库answers2023.txt
 
-链接：https://pan.baidu.com/s/1ip3sy-E-Md5YvGm64gdETQ?pwd=rdn0 
-提取码：rdn0
+链接：https://pan.baidu.com/s/1QWfHngGZjRs5f4c2r7PONA?pwd=u047 
+提取码：u047
 
 
 ## 如有侵权请联系我删除，Q:884777526
